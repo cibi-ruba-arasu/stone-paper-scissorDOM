@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<style>
+    .tit{
+        font-size: 80px;
+        text-align: center;
+        color: white;
+        background-color: black;
+        margin-top: 0;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+    }
+    .btn{
+        font-size: 30px;
+        margin-left: 150px;
+        color: white;
+        background-color: black;
+        border-style: none;
+    }
+    .btn:hover{
+        color: grey;
+        cursor: pointer;
+    }
+    .res{
+        text-align: center;
+        margin-top: 100px;
+    }
+    .ys{
+        text-align: center;
+    }
+    .bs{
+        text-align: center;
+    }
+</style>
+<head>
+
+</head>
+<body>
+    <p class="tit">Stone-Paper-Scissor</p>
+    <button class="btn" onclick="g=1;imp(g);">
+        Stone
+    </button>
+    <button class="btn" onclick=" g=2;imp(g);">
+        Paper
+    </button>
+    <button class="btn" onclick=" g=3;imp(g);">
+        Scissor
+    </button>
+    <button class="btn" onclick=" g=0;imp(g);">Reset Score</button>
+    <p class="res">-------------------</p>
+    <p class="ys">your score:</p>
+    <p class="bs">bot score:</p>
+</body>
+<script>
+    let gg=0;
+    let ps=JSON.parse(localStorage.getItem('fg'));
+    let cs=JSON.parse(localStorage.getItem('vb'));
+    gen=document.querySelector('.ys');
+    gen.innerHTML='your score:'+ps;
+    jen=document.querySelector('.bs');
+    jen.innerHTML='bot score:'+cs;
+    function imp(g){
+        gg= Math.random();
+        if (g==1)
+        {
+            if(gg>=0 && gg<0.3)
+            {
+                sr="you chose STONE, bot chose STONE...YOU TIED";
+                kl=document.querySelector('.res');
+                kl.innerHTML=''+sr;
+            }else if(gg>=0.3 && gg<0.6)
+            {
+                sr="you chose STONE, bot chose PAPER...YOU LOST";
+                kl=document.querySelector('.res');
+                kl.innerHTML=''+sr;
+                cs=cs+1;
+            }else
+            {
+                sr="you chose STONE, bot chose SCISSOR...YOU WON";
+                kl=document.querySelector('.res');
+                kl.innerHTML=''+sr;
+                ps=ps+1;
+            }
+        }else if (g==2)
+        {
+            if(gg>=0 && gg<0.3)
+            {
+                sr="you chose PAPER, bot chose STONE...YOU WON";
+                kl=document.querySelector('.res');
+                kl.innerHTML=''+sr;
+                ps=ps+1;
+            }else if(gg>=0.3 && gg<0.6)
+            {
+                sr="you chose PAPER, bot chose PAPER...YOU TIED";
+                kl=document.querySelector('.res');
+                kl.innerHTML=''+sr;
+            }else
+            {
+                sr="you chose PAPER, bot chose SCISSOR...YOU LOST";
+                kl=document.querySelector('.res');
+                kl.innerHTML=''+sr;
+                cs=cs+1;
+            }
+        }else if (g==3)
+        {
+            if(gg>=0 && gg<0.3)
+            {
+                sr="you chose SCISSOR, bot chose STONE...YOU LOST";
+                kl=document.querySelector('.res');
+                kl.innerHTML=''+sr;
+                cs=cs+1;
+            }else if(gg>=0.3 && gg<0.6)
+            {
+                sr="you chose SCISSOR, bot chose PAPER...YOU WON";
+                kl=document.querySelector('.res');
+                kl.innerHTML=''+sr;
+                ps=ps+1;
+            }else
+            {
+                sr="you chose SCISSOR, bot chose SCISSOR...YOU TIED";
+                kl=document.querySelector('.res');
+                kl.innerHTML=''+sr;
+            }
+        }else if(g==0)
+        {
+            localStorage.setItem('fg',JSON.stringify(0));
+            localStorage.setItem('vb',JSON.stringify(0));
+            ps=JSON.parse(localStorage.getItem('fg'));
+            cs=JSON.parse(localStorage.getItem('vb'));
+            gen=document.querySelector('.ys');
+            gen.innerHTML='your score:'+ps;
+            jen=document.querySelector('.bs');
+            jen.innerHTML='bot score:'+cs;  
+            sr="SCORE RESET";
+            kl=document.querySelector('.res');
+            kl.innerHTML=''+sr;  
+        }
+        gen=document.querySelector('.ys');
+        gen.innerHTML='your score:'+ps;
+        jen=document.querySelector('.bs');
+        jen.innerHTML='bot score:'+cs;
+        localStorage.setItem('fg',JSON.stringify(ps));
+        localStorage.setItem('vb',JSON.stringify(cs));
+    }
+</script>
